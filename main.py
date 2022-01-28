@@ -4,6 +4,7 @@ API_ID = config("API_ID", default=None, cast=int)
 API_HASH = config("API_HASH", default=None)
 BOT_TOKEN = config("BOT_TOKEN", default=None) 
 AUTH = config("AUTH", default=None, cast=int)
+CHAT = config("CHAT", default=None, cast=int)
 
 import os, asyncio, logging
 from pyrogram import Client, filters, idle
@@ -19,7 +20,7 @@ logging.basicConfig(
     format=" %(asctime)s - [INDOAPPROVEBOT] >> %(levelname)s << %(message)s",
     handlers=[logging.FileHandler("indoapprovebot.log"), logging.StreamHandler()])
 
-@bot_client.on_chat_join_request(filters.chat(chat_id))
+@bot_client.on_chat_join_request(filters.chat(CHAT))
 async def approve(c: Client, m: ChatJoinRequest):
     if not m.from_user:
         return

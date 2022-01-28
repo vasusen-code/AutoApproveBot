@@ -1,0 +1,3 @@
+python-decouple
+pyrogram
+tgcrypto

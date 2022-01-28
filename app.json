@@ -24,6 +24,10 @@
         "BOT_TOKEN": {
             "description": "BOT TOKEN.",
             "value": ""
+        },
+        "CHAT": {
+            "description": "chat id of channel.",
+            "value": ""
         }
     },
     "buildpacks": [

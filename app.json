@@ -1,0 +1,34 @@
+{
+    "name": "Auto approve requests",
+    "description": "",
+    "logo": "",
+    "keywords": [
+        "AutoApproveRequests"
+    ],
+    "repository": "https://github.com/vasusen-code/AutoApproveBot",
+    "website": "",
+    "success_url": "https://t.me/DroneBots",
+    "env": {
+        "API_HASH": {
+            "description": "Your API HASH from my.telegram.org",
+            "value": ""
+        },
+        "API_ID": {
+            "description": "Your API ID from my.telegram.org",
+            "value": ""
+        },
+        "AUTH": {
+            "description": "AUTHORIZOR user id",
+            "value": ""
+        },
+        "SESSION": {
+            "description": "pyrogram string session.",
+            "value": ""
+        }
+    },
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        }
+    ]
+}

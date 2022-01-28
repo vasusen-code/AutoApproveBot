@@ -7,3 +7,34 @@ SESSION = config("SESSION", default=None) #pyro session
 
 from pyrogram.errors import FloodWait
 from pyrogram import Client, filters
+
+client = Client(
+    session_name=SESSION, 
+    api_hash=API_HASH, 
+    api_id=API_ID)
+  
+import os, asyncio, logging
+from pyrogram import Client, filters, idle
+from pyrogram.types import ChatJoinRequest
+from pyrogram.errors import FloodWait, MessageNotModified
+
+
+logging.getLogger("pyrogram").setLevel(logging.WARNING)
+logging.basicConfig(
+    level=logging.INFO,
+    datefmt="[%d/%m/%Y %H:%M:%S]",
+    format=" %(asctime)s - [INDOAPPROVEBOT] >> %(levelname)s << %(message)s",
+    handlers=[logging.FileHandler("indoapprovebot.log"), logging.StreamHandler()])
+
+@client.on_chat_join_request(filters.chat(chat_id))
+async def approve(c: Client, m: ChatJoinRequest):
+    if not m.from_user:
+        return
+    try:
+        await c.approve_chat_join_request(m.chat.id, m.from_user.id)
+    except FloodWait as e:
+        logging.info(f"Sleeping for {e.x + 2} seconds due to floodwaits!")
+        await asyncio.sleep(e.x + 2)
+        await c.approve_chat_join_request(m.chat.id, m.from_user.id)
+
+client.start()

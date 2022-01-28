@@ -5,18 +5,15 @@ API_HASH = config("API_HASH", default=None)
 BOT_TOKEN = config("BOT_TOKEN", default=None)
 SESSION = config("SESSION", default=None) #pyro session
 
-from pyrogram.errors import FloodWait
-from pyrogram import Client, filters
+import os, asyncio, logging
+from pyrogram import Client, filters, idle
+from pyrogram.types import ChatJoinRequest
+from pyrogram.errors import FloodWait, MessageNotModified
 
 client = Client(
     session_name=SESSION, 
     api_hash=API_HASH, 
     api_id=API_ID)
-  
-import os, asyncio, logging
-from pyrogram import Client, filters, idle
-from pyrogram.types import ChatJoinRequest
-from pyrogram.errors import FloodWait, MessageNotModified
 
 
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
@@ -37,4 +34,6 @@ async def approve(c: Client, m: ChatJoinRequest):
         await asyncio.sleep(e.x + 2)
         await c.approve_chat_join_request(m.chat.id, m.from_user.id)
 
-client.start()
+async def run_bot_():
+    await client.start()
+    await idle()

@@ -4,6 +4,7 @@ API_ID = config("API_ID", default=None, cast=int)
 API_HASH = config("API_HASH", default=None)
 BOT_TOKEN = config("BOT_TOKEN", default=None)
 SESSION = config("SESSION", default=None) #pyro session
+AUTH = config("AUTH", default=None, cast=int)
 
 import os, asyncio, logging
 from pyrogram import Client, filters, idle
@@ -34,7 +35,7 @@ async def approve(c: Client, m: ChatJoinRequest):
         await asyncio.sleep(e.x + 2)
         await c.approve_chat_join_request(m.chat.id, m.from_user.id)
 
-@client.on_message(filters.user(owner_id))
+@client.on_message(filters.user(AUTH))
 async def alive(c, m):
     if m.text == '!alive':
         await m.reply_text("I'm alive!")

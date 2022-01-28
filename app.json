@@ -18,11 +18,11 @@
             "value": ""
         },
         "AUTH": {
-            "description": "AUTHORIZOR user id",
+            "description": "owner user id",
             "value": ""
         },
-        "SESSION": {
-            "description": "pyrogram string session.",
+        "BOT_TOKEN": {
+            "description": "BOT TOKEN.",
             "value": ""
         }
     },

@@ -34,6 +34,9 @@ async def approve(c: Client, m: ChatJoinRequest):
         await asyncio.sleep(e.x + 2)
         await c.approve_chat_join_request(m.chat.id, m.from_user.id)
 
-async def run_bot_():
-    await client.start()
-    await idle()
+@client.on_message(filters.user(owner_id))
+async def alive(c, m):
+    if m.text == '!alive':
+        await m.reply_text("I'm alive!")
+
+client.run()

@@ -33,12 +33,10 @@ async def approve(c: Client, m: ChatJoinRequest):
 
 @bot_client.on_message(filters.user(AUTH))
 async def well_yes(c, m):
-    await m.reply_text(f"{c.my_bot.username} is alive!")
+    await m.reply("I am alive!")
 
 async def run_bot_():
     await bot_client.start()
-    bot_client.my_bot = await bot_client.get_me()
-    logging.log(f"Started bot as : {bot_client.my_bot.username}")
     await idle()
 
 if __name__ == "__main__":

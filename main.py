@@ -38,5 +38,6 @@ async def run_bot_():
     await bot_client.start()
     await idle()
 
+print("Starting BOT • #DroneBots")
 if __name__ == "__main__":
     bot_client.loop.run_until_complete(run_bot_())
